@@ -124,7 +124,11 @@ class Camera(TriggerableDevice):
         # DEPRECATED backward campatibility for use of exposuretime keyword argument instead of exposure_time:
         self.set_property('exposure_time', self.exposure_time, location='device_properties', overwrite=True)
             
-            
+    def set_acquisition_ROI(self, acq_ROI):
+        # acq_ROI is a tuple of form (width, height, offset_X, offset_Y)
+        # This method is used in a script to overwrite a camera's
+        # acquisition_ROI without throwing errors in the connection table.
+        self.set_property('acquisition_ROI', acq_ROI, location='device_properties', overwrite=True)
 
 import os
 
